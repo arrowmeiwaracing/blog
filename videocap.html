@@ -9,7 +9,7 @@
 <main>
 <h1>Video Examples</h1>
 <div>
-<button click="cap()">Capture</button>
+<button onclick="cap()">Capture</button>
 <br/>
 <video id="player" controls autoplay style="width: 320px; height: 240px; border: 1px solid black;"></video>
 <br/>
@@ -33,13 +33,12 @@
   };
   navigator.mediaDevices.getUserMedia({video: true})
       .then(handleSuccess);
-</script>
-<script type="text/javascript">
-var cap = function() {
+
+  var cap = function() {
     var context = snapshotCanvas.getContext('2d');
     context.drawImage(player, 0, 0, snapshotCanvas.width, snapshotCanvas.height);
     console.log(snapshotCanvas.toDataURL().split(",")[1]);
-}
+  }
 </script>
 
 </html>
