@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Video Examples</title>
+</head>
+
+<body>
+<main>
+<h1>Video Examples</h1>
+<div>
+<button click="cap()">Capture</button>
+<br/>
+<video id="player" controls autoplay style="width: 320px; height: 240px; border: 1px solid black;"></video>
+<br/>
+<canvas id="snapshot" width=320 height=240></canvas>
+<br/>
+
+<a href="https://github.com/arrowmeiwaracing/"><button>homeに戻る</button></a>
+</div>
+</main>
+</body>
+
+<script type="text/javascript">
+  var player = document.getElementById('player'); 
+  var snapshotCanvas = document.getElementById('snapshot');
+  var captureButton = document.getElementById('capture');
+  //let videoTracks;
+
+  var handleSuccess = function(stream) {
+    player.srcObject = stream;
+    //videoTracks = stream.getVideoTracks();
+  };
+  navigator.mediaDevices.getUserMedia({video: true})
+      .then(handleSuccess);
+</script>
+<script type="text/javascript">
+var cap = function() {
+    var context = snapshotCanvas.getContext('2d');
+    context.drawImage(player, 0, 0, snapshotCanvas.width, snapshotCanvas.height);
+    console.log(snapshotCanvas.toDataURL().split(",")[1]);
+}
+</script>
+
+</html>
