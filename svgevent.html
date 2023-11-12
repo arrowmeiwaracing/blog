@@ -1,0 +1,52 @@
+<html>
+  <body>
+
+
+
+<svg id="canvas" width="600px" height="600px" viewbox="0 0 600 600">
+<line x1="0" y1="300" x2="600" y2="300" stroke="skyblue" stroke-width="2"/>
+<line x1="300" y1="0" x2="300" y2="600" stroke="skyblue" stroke-width="2"/>
+<rect x="1" y="1" width="598" height="598" fill="none" stroke="blue" stroke-width="2" />
+<text id="txt" x="10" y="30" fint-size="10" fill="red">300:300</text>
+<circle id="cursor" cx="300" cy="300" r="50" stroke="blue" fill="blue" stroke-width="1" />
+</svg>
+<script>
+  let flg = 0;
+  let txt = document.getElementById("txt");
+  let svg = document.getElementById("canvas");
+  let cur = document.getElementById("cursor");
+
+  cur.addEventListener("pointerdown", event => {
+      flg = 1;
+      event.preventDefault();
+  });
+
+  cur.addEventListener("pointerup", event => {
+      flg = 0;
+      cur.cx.baseVal.value = 300;
+      cur.cy.baseVal.value = 300;
+      txt.textContent = cur.cx.baseVal.value + ":" + cur.cy.baseVal.value;
+      event.preventDefault();
+  });
+
+  cur.addEventListener("pointerout", event => {
+      flg = 0;
+      cur.cx.baseVal.value = 300;
+      cur.cy.baseVal.value = 300;
+      txt.textContent = cur.cx.baseVal.value + ":" + cur.cy.baseVal.value;
+      event.preventDefault();
+  });
+
+  cur.addEventListener("pointermove", event => {
+      if(flg == 1) {
+          cur.cx.baseVal.value = event.clientX;
+          cur.cy.baseVal.value = event.clientY;
+          txt.textContent = cur.cx.baseVal.value + ":" + cur.cy.baseVal.value;
+      }
+      event.preventDefault();
+  });
+</script>
+
+
+  </body>
+</html>
