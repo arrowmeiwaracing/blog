@@ -16,6 +16,11 @@
   let svg = document.getElementById("canvas");
   let cur = document.getElementById("cursor");
 
+  /* pinch, DnD stop */
+  document.addEventListener('touchstart', function(e){
+     e.preventDefault();
+  }, false);
+
   cur.addEventListener("pointerdown", event => {
       flg = 1;
       event.preventDefault();
@@ -27,7 +32,7 @@
       cur.cy.baseVal.value = 300;
       txt.textContent = cur.cx.baseVal.value + ":" + cur.cy.baseVal.value;
       event.preventDefault();
-  });
+  }, false);
 
   cur.addEventListener("pointerout", event => {
       flg = 0;
@@ -35,17 +40,16 @@
       cur.cy.baseVal.value = 300;
       txt.textContent = cur.cx.baseVal.value + ":" + cur.cy.baseVal.value;
       event.preventDefault();
-  });
+  }, false);
 
   cur.addEventListener("pointermove", event => {
-    event.preventDefault();
-    if(flg == 1) {
+      if(flg == 1) {
           cur.cx.baseVal.value = event.clientX;
           cur.cy.baseVal.value = event.clientY;
           txt.textContent = cur.cx.baseVal.value + ":" + cur.cy.baseVal.value;
       }
       event.preventDefault();
-  });
+  }, false);
 </script>
 
 
