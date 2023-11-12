@@ -38,7 +38,8 @@
   });
 
   cur.addEventListener("pointermove", event => {
-      if(flg == 1) {
+    event.preventDefault();
+    if(flg == 1) {
           cur.cx.baseVal.value = event.clientX;
           cur.cy.baseVal.value = event.clientY;
           txt.textContent = cur.cx.baseVal.value + ":" + cur.cy.baseVal.value;
